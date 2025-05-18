@@ -1,81 +1,114 @@
-# Burp Suite Professional Setup Script
+<p align="center">
+  <img src="https://portswigger.net/public/portswigger-logo.svg" alt="PortSwigger Logo" width="200" />
+</p>
 
-This script automates the setup and configuration of **Burp Suite Professional** on macOS, including downloading necessary resources and fixing common issues.
-
-## Developer Information
-
-- **Developer**: [@anbuinfosec](https://github.com/anbuinfosec)
-- **GitHub Repository**: [Burp Suite Pro Mac](https://github.com/anbuinfosec/burp-pro-mac)
+<h1 align="center">Burp-Pro Mac</h1>
 
 ---
 
-## Prerequisites
+# Burp Suite Professional Setup Script for macOS
+
+This script automates the installation, setup, and configuration of **Burp Suite Professional** on macOS. It handles downloading the necessary keygen, modifying JVM options, and fixing common macOS-specific issues to ensure Burp Suite runs smoothly.
+
+---
+
+## 🚀 Developer Information
+
+- **Developer**: [@anbuinfosec](https://github.com/anbuinfosec)  
+- **GitHub Repository**: [Burp Suite Pro Mac](https://github.com/anbuinfosec/burp-pro-mac)  
+
+---
+
+## 📝 Prerequisites
 
 ### 1. Download Burp Suite Professional
-Visit the [official Burp Suite Professional website](https://portswigger.net/burp/pro) to download the application. Install it in the default location:
+
+Download the latest version from the official website:  
+[https://portswigger.net/burp/pro](https://portswigger.net/burp/pro)  
+
+Install the app to the default directory:
+
 ```plaintext
 /Applications/Burp Suite Professional.app
-```
+````
 
-### 2. Clone the Repository
-Clone this repository to get the setup script:
+---
+
+### 2. Clone this Repository
+
+Get the setup script from GitHub:
+
 ```bash
 git clone https://github.com/anbuinfosec/burp-pro-mac.git
 cd burp-pro-mac
 ```
 
+---
+
 ### 3. Make the Script Executable
+
 ```bash
-chmod +x setup.sh
+chmod +x burp.sh
 ```
 
 ---
 
-## Usage
+## ⚙️ Usage
 
-Run the script with the following options:
+Run the script with any of the following options:
 
-### 1. Setup Burp Suite
-To set up Burp Suite with required configurations:
+| Option   | Description                                             |
+| -------- | ------------------------------------------------------- |
+| `-setup` | Setup Burp Suite Professional (download keygen, config) |
+| `-fix`   | Fix macOS quarantine issues causing app damage errors   |
+| `-run`   | Launch the BurpLoaderKeygen registration machine        |
+| `-help`  | Show help and usage information                         |
+
+---
+
+### Example Commands
+
 ```bash
-sudo ./setup.sh -setup
-```
-
-### 2. Fix Quarantine Issues
-To fix the `"Burp Suite Professional is damaged and can't be opened"` error:
-```bash
-sudo ./setup.sh -fix
-```
-
-### 3. Help Menu
-To display usage and developer information:
-```bash
-./setup.sh -help
+sudo ./burp.sh -setup
+sudo ./burp.sh -fix
+./burp.sh -run
+./burp.sh -help
 ```
 
 ---
 
-## What the Script Does
+## 🔍 What the Script Does
 
-1. **Downloads the Keygen**: Retrieves the required `BurpLoaderKeygen.jar` from the [GitHub Repository](https://github.com/anbuinfosec/burp-pro-mac).
-2. **Modifies Configuration**: Adds necessary JVM options to `vmoptions.txt` for Burp Suite.
-3. **Handles Errors**: Resolves macOS quarantine issues for downloaded applications.
+* **Homebrew & Java Check**
+  Verifies if Homebrew and Java (OpenJDK) are installed.
+  If missing, it automatically installs them for you.
+
+* **Keygen Download**
+  Downloads `BurpLoaderKeygen.jar` to the Burp Suite resources directory if not already present.
+
+* **JVM Configuration**
+  Appends JVM flags in `vmoptions.txt` to allow Burp Suite to run with the keygen agent.
+
+* **Quarantine Fix**
+  Removes the macOS quarantine attribute to fix `"damaged and can't be opened"` errors.
+
+* **Run Registration Machine**
+  Starts the BurpLoaderKeygen jar to register Burp Suite.
 
 ---
 
-## Download Keygen
-The script automatically downloads the keygen from the following location:
+## 🔗 Download Location for Keygen
+
+The keygen is automatically downloaded from the following release URL:
+
 [BurpLoaderKeygen.jar](https://github.com/anbuinfosec/burp-pro-mac/releases/download/Letest/BurpLoaderKeygen.jar)
 
 ---
 
-## Notes
+## 📌 Important Notes
 
-- Ensure the `BurpLoaderKeygen.jar` is downloaded successfully to the application resource directory.
-- The script is designed for **macOS** users and assumes a specific Burp Suite installation path.
-
----
-
-**Developed by [@anbuinfosec](https://github.com/anbuinfosec)**
-
----
+* This script assumes Burp Suite Professional is installed in `/Applications/Burp Suite Professional.app`.
+* Running with `sudo` may be required to modify application files and remove quarantine attributes.
+* The script is tested on macOS only.
+* Java installation via Homebrew is targeted to the latest OpenJDK version.
+* JVM options appended to `vmoptions.txt` are necessary for Burp Suite to load the keygen agent.
